@@ -2,13 +2,44 @@
 
 ## Version 1 (MVP)
 
-- [x] Room Type
+### Project Setup
+
+- [x] Git Repository
+- [x] Ubuntu Development Environment
+- [x] Java 21
+- [x] Maven
+- [x] IntelliJ IDEA
+
+### Documentation
+
+- [x] ERD
+- [x] Project Context
+- [x] Database Documentation
+
+### Database
+
+- [x] RoomType
 - [x] Room
 - [x] Rate
 - [x] Guest
 - [x] User
 - [x] Reservation
 - [x] Payment
+
+### Backend
+
+- [ ] Create Spring Boot Project
+- [ ] Configure Database Connection
+- [ ] Create JPA Entities
+- [ ] Create Repository Layer
+- [ ] Create Service Layer
+- [ ] Create REST API
+- [ ] Exception Handling
+- [ ] Validation
+
+### Frontend
+
+- [ ] (To be filled when frontend development begins)
 
 ---
 
@@ -30,8 +61,8 @@
 
 - [ ] Split Payment
 - [ ] Multiple Payment Methods
-- [ ] Invoice
 - [ ] Refund Workflow
+- [ ] Invoice
 
 ### Pricing
 
@@ -41,9 +72,9 @@
 
 ### Room
 
-- [ ] Housekeeping Status
-- [ ] Out Of Order Details
-- [ ] Maintenance Schedule
+- [ ] Housekeeping Module
+- [ ] Maintenance Module
+- [ ] Out of Order Detail
 
 ### Reporting
 
