@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: hotelcore
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/hotelcore_db
+    username: hotelcore
+    password: hotelcore123
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+    open-in-view: false
+
+    properties:
+        hibernate:
+          format_sql: true
+
+server:
+  port: 8080
+
+logging:
+  level:
+    org.hibernate.SQL: DEBUG
+    org.hibernate.orm.jdbc.bind: TRACE
