@@ -28,7 +28,7 @@
 
 ### Backend
 
-- [ ] Create Spring Boot Project
+- [x] Create Spring Boot Project
 - [ ] Configure Database Connection
 - [ ] Create JPA Entities
 - [ ] Create Repository Layer
