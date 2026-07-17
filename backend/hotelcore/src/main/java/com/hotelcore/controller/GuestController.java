@@ -1,6 +1,7 @@
 package com.hotelcore.controller;
 
-import com.hotelcore.entity.Guest;
+import com.hotelcore.dto.GuestRequest;
+import com.hotelcore.dto.GuestResponse;
 import com.hotelcore.service.GuestService;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,24 +17,24 @@ public class GuestController {
     }
 
     @GetMapping
-    public List<Guest> getAllGuest() {
+    public List<GuestResponse> getAllGuest() {
         return guestService.findAll();
     }
 
     @GetMapping("/{id}")
-    public Guest getGuestById(@PathVariable Long id){
+    public GuestResponse getGuestById(@PathVariable Long id){
             return guestService.findById(id);
     }
 
     @PostMapping
-    public Guest createGuest(@RequestBody Guest guest) {
-        return guestService.saveGuest(guest);
+    public GuestResponse createGuest(@RequestBody GuestRequest request) {
+        return guestService.saveGuest(request);
     }
 
     @PutMapping("/{id}")
-    public Guest updateGuest(@PathVariable Long id,
-                             @RequestBody Guest guest) {
-        return guestService.update(id, guest);
+    public GuestResponse updateGuest(@PathVariable Long id,
+                             @RequestBody GuestRequest request) {
+        return guestService.update(id, request);
     }
 
     @DeleteMapping("/{id}")
