@@ -27,13 +27,15 @@
 - [x] Payment
 
 ### Backend
-
 - [x] Create Spring Boot Project
-- [ ] Configure Database Connection
-- [ ] Create JPA Entities
-- [ ] Create Repository Layer
-- [ ] Create Service Layer
-- [ ] Create REST API
+- [x] Configure Database Connection
+- [x] Guest module (Entity, Repository, DTO, Service, Controller)
+- [x] RoomType module (Entity, Repository, DTO, Service, Controller)
+- [x] Room module (Entity, Repository, DTO, Service, Controller)
+- [ ] User module
+- [ ] Rate module
+- [ ] Reservation module
+- [ ] Payment module
 - [ ] Exception Handling
 - [ ] Validation
 

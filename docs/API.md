@@ -6,15 +6,25 @@ This document will contain all REST API endpoints used by HotelCore.
 
 Status
 
-Not started.
+On Going
 
-This document will be filled during backend development.
+## Guest API
+- GET /api/guests
+- GET /api/guests/{id}
+- POST /api/guests
+- PUT /api/guests/{id}
+- DELETE /api/guests/{id}
 
-Planned Sections
+## RoomType API
+- GET /api/guests
+- GET /api/guests/{id}
+- POST /api/guests
+- PUT /api/guests/{id}
+- DELETE /api/guests/{id}
 
-- Authentication
-- Guest API
-- Room API
-- Reservation API
-- Payment API
-- User API
+## Room API
+- GET /api/guests
+- GET /api/guests/{id}
+- POST /api/guests
+- PUT /api/guests/{id}
+- DELETE /api/guests/{id}
