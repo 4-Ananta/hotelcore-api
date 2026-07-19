@@ -74,6 +74,7 @@ public class RoomTypeService {
 
     private RoomType toEntity(RoomTypeRequest request) {
         RoomType roomType = new RoomType();
+
         roomType.setName(request.getName());
         roomType.setCapacity(request.getCapacity());
         roomType.setDescription(request.getDescription());
