@@ -1,6 +1,5 @@
 package com.hotelcore.dto;
 
-import com.hotelcore.entity.RoomType;
 import com.hotelcore.enums.RoomStatus;
 import lombok.Getter;
 import lombok.Setter;
