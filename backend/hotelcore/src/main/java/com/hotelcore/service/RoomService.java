@@ -23,6 +23,12 @@ public class RoomService {
         this.roomTypeRepository = roomTypeRepository;
     }
 
+    private RoomType findRoomTypeByName(String name) {
+        return roomTypeRepository.findByName(name)
+                .orElseThrow(()-> new RuntimeException("Room Type tidak ditemukan"));
+    }
+
+
     public List<RoomResponse> findAll() {
         List<Room> rooms = roomRepository.findAll();
         List<RoomResponse> hasil = new ArrayList<>();
@@ -49,8 +55,7 @@ public class RoomService {
         Room existing = roomRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Room tidak ditemukan"));
 
-        RoomType roomType = roomTypeRepository.findById(request.getRoomTypeId())
-                        .orElseThrow(() -> new RuntimeException("Room Type tidak ditemukan"));
+        RoomType roomType = findRoomTypeByName(request.getRoomTypeName());
 
         existing.setRoomNumber(request.getRoomNumber());
         existing.setFloor(request.getFloor());
@@ -80,8 +85,7 @@ public class RoomService {
     }
 
     private Room toEntity(RoomRequest request){
-        RoomType roomType = roomTypeRepository.findById(request.getRoomTypeId())
-                .orElseThrow(() -> new RuntimeException("Room Type tidak ditemukan"));
+        RoomType roomType = findRoomTypeByName(request.getRoomTypeName());
 
         Room room = new Room();
 

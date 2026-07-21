@@ -8,7 +8,7 @@ import lombok.Setter;
 @Setter
 public class RoomRequest {
     private String roomNumber;
-    private Long roomTypeId;
+    private String roomTypeName;
     private Integer floor;
     private RoomStatus status;
 }
