@@ -4,7 +4,6 @@ import com.hotelcore.dto.RoomRequest;
 import com.hotelcore.dto.RoomResponse;
 import com.hotelcore.entity.Room;
 import com.hotelcore.entity.RoomType;
-import com.hotelcore.enums.RoomStatus;
 import com.hotelcore.repository.RoomRepository;
 import com.hotelcore.repository.RoomTypeRepository;
 import org.springframework.stereotype.Service;
