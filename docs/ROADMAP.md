@@ -38,6 +38,7 @@
 - [x] Payment module
 - [ ] Exception Handling
 - [ ] Validation
+- [ ] Unit Testing
 
 ### Frontend
 

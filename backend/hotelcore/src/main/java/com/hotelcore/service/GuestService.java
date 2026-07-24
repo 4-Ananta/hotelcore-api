@@ -3,6 +3,7 @@ package com.hotelcore.service;
 import com.hotelcore.dto.GuestRequest;
 import com.hotelcore.dto.GuestResponse;
 import com.hotelcore.entity.Guest;
+import com.hotelcore.exception.ResourceNotFoundException;
 import com.hotelcore.repository.GuestRepository;
 import org.springframework.stereotype.Service;
 
@@ -30,7 +31,7 @@ public class GuestService {
 
     public GuestResponse findById(Long id) {
         Guest guest = guestRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Guest tidak ditemukan"));
+                .orElseThrow(() -> new ResourceNotFoundException("Guest tidak ditemukan"));
         return toResponse(guest);
     }
 
@@ -42,7 +43,7 @@ public class GuestService {
 
     public GuestResponse update(Long id, GuestRequest request) {
         Guest existing = guestRepository.findById(id)
-                        .orElseThrow(() -> new RuntimeException("Guest tidak ditemukan"));
+                        .orElseThrow(() -> new ResourceNotFoundException("Guest tidak ditemukan"));
 
         existing.setIdentityNumber(request.getIdentityNumber());
         existing.setIdentityType(request.getIdentityType());

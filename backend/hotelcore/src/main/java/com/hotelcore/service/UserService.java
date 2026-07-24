@@ -3,6 +3,7 @@ package com.hotelcore.service;
 import com.hotelcore.dto.UserRequest;
 import com.hotelcore.dto.UserResponse;
 import com.hotelcore.entity.User;
+import com.hotelcore.exception.ResourceNotFoundException;
 import com.hotelcore.repository.UserRepository;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -32,7 +33,7 @@ public class UserService {
 
     public UserResponse findById(Long id) {
         User user = userRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("User tidak ditemukan"));
+                .orElseThrow(() -> new ResourceNotFoundException("User tidak ditemukan"));
         return toResponse(user);
     }
 
@@ -44,7 +45,7 @@ public class UserService {
 
     public UserResponse update(Long id, UserRequest request) {
         User existing = userRepository.findById(id)
-                .orElseThrow(()-> new RuntimeException("User tidak ditemukan"));
+                .orElseThrow(()-> new ResourceNotFoundException("User tidak ditemukan"));
 
         existing.setUsername(request.getUsername());
         existing.setPassword(passwordEncoder.encode(request.getPassword()));

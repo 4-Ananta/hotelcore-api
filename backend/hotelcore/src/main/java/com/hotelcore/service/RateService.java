@@ -4,6 +4,7 @@ import com.hotelcore.dto.RateRequest;
 import com.hotelcore.dto.RateResponse;
 import com.hotelcore.entity.Rate;
 import com.hotelcore.entity.RoomType;
+import com.hotelcore.exception.ResourceNotFoundException;
 import com.hotelcore.repository.RateRepository;
 import com.hotelcore.repository.RoomTypeRepository;
 import org.springframework.stereotype.Service;
@@ -23,7 +24,7 @@ public class RateService {
 
     private RoomType findRoomTypeByName(String name) {
         return roomTypeRepository.findByName(name)
-                .orElseThrow(()-> new RuntimeException("Room Type tidak ditemukan"));
+                .orElseThrow(()-> new ResourceNotFoundException("Room Type tidak ditemukan"));
     }
 
     public List<RateResponse> findAll() {
@@ -38,7 +39,7 @@ public class RateService {
 
     public  RateResponse findById(Long id) {
         Rate rate = rateRepository.findById(id)
-                .orElseThrow(()-> new RuntimeException("Rate tidak ditemukan"));
+                .orElseThrow(()-> new ResourceNotFoundException("Rate tidak ditemukan"));
         return toResponse(rate);
     }
 
@@ -50,7 +51,7 @@ public class RateService {
 
     public RateResponse update(Long id, RateRequest request) {
         Rate existing = rateRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Rate tidak ditemukan"));
+                .orElseThrow(() -> new ResourceNotFoundException("Rate tidak ditemukan"));
         RoomType roomType = findRoomTypeByName(request.getRoomTypeName());
 
         existing.setRoomType(roomType);

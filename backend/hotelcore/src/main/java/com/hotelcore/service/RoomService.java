@@ -4,6 +4,7 @@ import com.hotelcore.dto.RoomRequest;
 import com.hotelcore.dto.RoomResponse;
 import com.hotelcore.entity.Room;
 import com.hotelcore.entity.RoomType;
+import com.hotelcore.exception.ResourceNotFoundException;
 import com.hotelcore.repository.RoomRepository;
 import com.hotelcore.repository.RoomTypeRepository;
 import org.springframework.stereotype.Service;
@@ -24,7 +25,7 @@ public class RoomService {
 
     private RoomType findRoomTypeByName(String name) {
         return roomTypeRepository.findByName(name)
-                .orElseThrow(()-> new RuntimeException("Room Type tidak ditemukan"));
+                .orElseThrow(()-> new ResourceNotFoundException("Room Type tidak ditemukan"));
     }
 
 
@@ -40,7 +41,7 @@ public class RoomService {
 
     public RoomResponse findById(Long id) {
         Room room = roomRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Room tidak ditemukan"));
+                .orElseThrow(() -> new ResourceNotFoundException("Room tidak ditemukan"));
         return toResponse(room);
     }
 
@@ -52,7 +53,7 @@ public class RoomService {
 
     public RoomResponse update(Long id, RoomRequest request) {
         Room existing = roomRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Room tidak ditemukan"));
+                .orElseThrow(() -> new ResourceNotFoundException("Room tidak ditemukan"));
 
         RoomType roomType = findRoomTypeByName(request.getRoomTypeName());
 

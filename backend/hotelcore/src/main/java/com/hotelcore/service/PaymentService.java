@@ -5,6 +5,7 @@ import com.hotelcore.dto.PaymentResponse;
 import com.hotelcore.entity.Payment;
 import com.hotelcore.entity.Reservation;
 import com.hotelcore.entity.User;
+import com.hotelcore.exception.ResourceNotFoundException;
 import com.hotelcore.repository.PaymentRepository;
 import com.hotelcore.repository.ReservationRepository;
 import com.hotelcore.repository.UserRepository;
@@ -29,12 +30,12 @@ public class PaymentService {
 
     private Reservation findReservasionById(Long reservationId){
         return reservationRepository.findById(reservationId)
-                .orElseThrow(()-> new RuntimeException("Reservation tidak ditemukan"));
+                .orElseThrow(()-> new ResourceNotFoundException("Reservation tidak ditemukan"));
     }
 
     private User findByUsername(String username){
         return userRepository.findByUsername(username)
-                .orElseThrow(()-> new RuntimeException("User tidak ditemukan"));
+                .orElseThrow(()-> new ResourceNotFoundException("User tidak ditemukan"));
     }
 
     public List<PaymentResponse> findAll() {
@@ -49,7 +50,7 @@ public class PaymentService {
 
     public PaymentResponse findById(Long id) {
         Payment payment = paymentRepository.findById(id)
-                .orElseThrow(()-> new RuntimeException("Payment tidak ditemukan"));
+                .orElseThrow(()-> new ResourceNotFoundException("Payment tidak ditemukan"));
         return toResponse(payment);
     }
 
@@ -61,7 +62,7 @@ public class PaymentService {
 
     public PaymentResponse update(Long id, PaymentRequest request) {
         Payment existing = paymentRepository.findById(id)
-                .orElseThrow(()-> new RuntimeException("Payment tidak ditemukan"));
+                .orElseThrow(()-> new ResourceNotFoundException("Payment tidak ditemukan"));
 
         Reservation reservation = findReservasionById(request.getReservation());
         User user = findByUsername(request.getCreatedBy());

@@ -3,6 +3,7 @@ package com.hotelcore.service;
 import com.hotelcore.dto.ReservationRequest;
 import com.hotelcore.dto.ReservationResponse;
 import com.hotelcore.entity.*;
+import com.hotelcore.exception.ResourceNotFoundException;
 import com.hotelcore.repository.*;
 import org.springframework.stereotype.Service;
 
@@ -30,22 +31,22 @@ public class ReservationService {
 
     private Room findByRoomNumber(String roomNumber) {
         return roomRepository.findByRoomNumber(roomNumber)
-                .orElseThrow(()-> new RuntimeException("Room tidak ditemukan"));
+                .orElseThrow(()-> new ResourceNotFoundException("Room tidak ditemukan"));
     }
 
     private Guest findByIdentityNumber(String identityNumber){
         return guestRepository.findByIdentityNumber(identityNumber)
-                .orElseThrow(()-> new RuntimeException("Guest tidak ditemukan"));
+                .orElseThrow(()-> new ResourceNotFoundException("Guest tidak ditemukan"));
     }
 
     private Rate findByRateName(String rateName) {
         return rateRepository.findByRateName(rateName)
-                .orElseThrow(()-> new RuntimeException("Rate tidak ditemukan"));
+                .orElseThrow(()-> new ResourceNotFoundException("Rate tidak ditemukan"));
     }
 
     private User findByUsername(String username){
         return userRepository.findByUsername(username)
-                .orElseThrow(()-> new RuntimeException("User tidak ditemukan"));
+                .orElseThrow(()-> new ResourceNotFoundException("User tidak ditemukan"));
     }
 
     public List<ReservationResponse> findAll() {
@@ -60,7 +61,7 @@ public class ReservationService {
 
     public ReservationResponse findById(Long id) {
         Reservation reservation = reservationRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Reservation tidak ditemukan"));
+                .orElseThrow(() -> new ResourceNotFoundException("Reservation tidak ditemukan"));
         return toResponse(reservation);
     }
 
@@ -72,7 +73,7 @@ public class ReservationService {
 
     public ReservationResponse update(Long id, ReservationRequest request) {
         Reservation existing = reservationRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Reservation tidak ditemukan"));
+                .orElseThrow(() -> new ResourceNotFoundException("Reservation tidak ditemukan"));
 
         Guest guest = findByIdentityNumber(request.getIdentityNumber());
         Room room = findByRoomNumber(request.getRoomNumber());
@@ -80,7 +81,7 @@ public class ReservationService {
         User user = findByUsername(request.getCreatedBy());
 
         if (!request.getCheckOutDate().isAfter(request.getCheckInDate())){
-            throw new RuntimeException("Check out date harus setelah check in date");
+            throw new ResourceNotFoundException("Check out date harus setelah check in date");
         }
         long nights = ChronoUnit.DAYS.between(request.getCheckInDate(), request.getCheckOutDate());
         BigDecimal pricePerNight = rate.getPrice();
@@ -134,7 +135,7 @@ public class ReservationService {
         User user = findByUsername(request.getCreatedBy());
 
         if (!request.getCheckOutDate().isAfter(request.getCheckInDate())){
-            throw new RuntimeException("Check out date harus setelah check in date");
+            throw new ResourceNotFoundException("Check out date harus setelah check in date");
         }
         long nights = ChronoUnit.DAYS.between(request.getCheckInDate(), request.getCheckOutDate());
         BigDecimal pricePerNight = rate.getPrice();
