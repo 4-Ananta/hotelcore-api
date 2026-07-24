@@ -32,10 +32,10 @@
 - [x] Guest module (Entity, Repository, DTO, Service, Controller)
 - [x] RoomType module (Entity, Repository, DTO, Service, Controller)
 - [x] Room module (Entity, Repository, DTO, Service, Controller)
-- [ ] User module
-- [ ] Rate module
-- [ ] Reservation module
-- [ ] Payment module
+- [x] User module
+- [x] Rate module
+- [x] Reservation module
+- [x] Payment module
 - [ ] Exception Handling
 - [ ] Validation
 
