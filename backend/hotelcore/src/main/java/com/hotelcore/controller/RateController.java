@@ -3,6 +3,7 @@ package com.hotelcore.controller;
 import com.hotelcore.dto.RateRequest;
 import com.hotelcore.dto.RateResponse;
 import com.hotelcore.service.RateService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,13 +28,13 @@ public class RateController {
     }
 
     @PostMapping
-    public RateResponse createRate(@RequestBody RateRequest request) {
+    public RateResponse createRate(@Valid @RequestBody RateRequest request) {
         return rateService.saveRate(request);
     }
 
     @PutMapping("/{id}")
     public RateResponse updateRate(@PathVariable Long id,
-                                   @RequestBody RateRequest request) {
+                                   @Valid @RequestBody RateRequest request) {
         return rateService.update(id, request);
     }
 

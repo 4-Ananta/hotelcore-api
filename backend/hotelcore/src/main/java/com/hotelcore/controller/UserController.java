@@ -3,6 +3,7 @@ package com.hotelcore.controller;
 import com.hotelcore.dto.UserRequest;
 import com.hotelcore.dto.UserResponse;
 import com.hotelcore.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,13 +28,13 @@ public class UserController {
     }
 
     @PostMapping
-    public  UserResponse createUser(@RequestBody UserRequest request) {
+    public  UserResponse createUser(@Valid @RequestBody UserRequest request) {
         return userService.saveUser(request);
     }
 
     @PutMapping("/{id}")
     public UserResponse updateUser(@PathVariable Long id,
-                                   @RequestBody UserRequest request) {
+                                   @Valid @RequestBody UserRequest request) {
         return userService.update(id, request);
     }
 

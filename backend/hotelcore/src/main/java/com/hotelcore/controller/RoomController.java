@@ -3,6 +3,7 @@ package com.hotelcore.controller;
 import com.hotelcore.dto.RoomRequest;
 import com.hotelcore.dto.RoomResponse;
 import com.hotelcore.service.RoomService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,13 +28,13 @@ public class RoomController {
     }
 
     @PostMapping
-    public RoomResponse createRoom(@RequestBody RoomRequest request){
+    public RoomResponse createRoom(@Valid @RequestBody RoomRequest request){
         return roomService.saveRoom(request);
     }
 
     @PutMapping("/{id}")
     public RoomResponse updateRoom(@PathVariable Long id,
-                                   @RequestBody RoomRequest request){
+                                   @Valid @RequestBody RoomRequest request){
         return roomService.update(id, request);
     }
 

@@ -3,6 +3,7 @@ package com.hotelcore.controller;
 import com.hotelcore.dto.PaymentRequest;
 import com.hotelcore.dto.PaymentResponse;
 import com.hotelcore.service.PaymentService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,13 +28,13 @@ public class PaymentController {
     }
 
     @PostMapping
-    public PaymentResponse createPayment(@RequestBody PaymentRequest request) {
+    public PaymentResponse createPayment(@Valid @RequestBody PaymentRequest request) {
         return paymentService.savePayment(request);
     }
 
     @PutMapping("/{id}")
     public PaymentResponse update(@PathVariable Long id,
-                                  @RequestBody PaymentRequest request) {
+                                  @Valid @RequestBody PaymentRequest request) {
         return paymentService.update(id, request);
     }
 

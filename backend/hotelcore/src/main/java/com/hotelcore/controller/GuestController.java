@@ -3,6 +3,7 @@ package com.hotelcore.controller;
 import com.hotelcore.dto.GuestRequest;
 import com.hotelcore.dto.GuestResponse;
 import com.hotelcore.service.GuestService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,13 +28,13 @@ public class GuestController {
     }
 
     @PostMapping
-    public GuestResponse createGuest(@RequestBody GuestRequest request) {
+    public GuestResponse createGuest(@Valid @RequestBody GuestRequest request) {
         return guestService.saveGuest(request);
     }
 
     @PutMapping("/{id}")
     public GuestResponse updateGuest(@PathVariable Long id,
-                             @RequestBody GuestRequest request) {
+                                     @Valid @RequestBody GuestRequest request) {
         return guestService.update(id, request);
     }
 
